@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-semibold text-primary">
+            <a href="#" className={`text-2xl font-semibold ${isScrolled ? 'text-primary' : 'text-white'}`}>
               COMPU.UY
             </a>
           </div>
@@ -46,7 +46,9 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className={`hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isScrolled ? 'text-gray-600' : 'text-white'
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -58,7 +60,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              className={`inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary ${
+                isScrolled ? 'text-gray-400' : 'text-white'
+              }`}
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
