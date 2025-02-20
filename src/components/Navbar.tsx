@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <a href="#" className="text-2xl font-semibold text-primary">
-              compu.uy
+              COMPU.UY
             </a>
           </div>
           
