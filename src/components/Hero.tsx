@@ -1,6 +1,4 @@
-
 import { ArrowRight } from "lucide-react";
-
 const Hero = () => {
   return <section id="home" className="relative min-h-[85vh] flex items-center justify-center bg-[#3973B9] pt-16 overflow-hidden">
       {/* Imagen de fondo con overlay */}
@@ -22,7 +20,7 @@ const Hero = () => {
           <p className="text-xl sm:text-2xl text-white/90 mb-12 font-light">
             Soporte técnico confiable y amigable para tu día a día
             <br className="hidden sm:block" />
-            <span className="opacity-75">(y remoto en todo Uruguay)</span>
+            
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -35,5 +33,4 @@ const Hero = () => {
       </div>
     </section>;
 };
-
 export default Hero;
