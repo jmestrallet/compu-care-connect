@@ -1,6 +1,6 @@
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Problem = {
   problem: string;
@@ -31,49 +31,64 @@ const problems: Problem[] = [
 ];
 
 const ProblemCard = ({ problem, solution }: Problem) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="relative group h-40 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer">
-      <div className="p-6 h-full flex items-center justify-center text-center">
-        <p className="text-gray-800 group-hover:opacity-0 transition-opacity duration-300">
-          "{problem}"
-        </p>
-        <div className="absolute inset-0 bg-[#3973B9] p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <p className="text-white text-center">
+    <motion.div
+      className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 cursor-pointer max-w-2xl mx-auto"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+    >
+      <AnimatePresence mode="wait">
+        {!isHovered ? (
+          <motion.div
+            key="problem"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="text-white/90 text-xl sm:text-2xl text-center font-light"
+          >
+            "{problem}"
+          </motion.div>
+        ) : (
+          <motion.div
+            key="solution"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="text-white text-xl sm:text-2xl text-center font-medium"
+          >
             {solution}
-          </p>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
 const ProblemSolutions = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((current) => (current + 1) % problems.length);
+    }, 5000); // Cambiar cada 5 segundos
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="py-16 bg-gray-50">
+    <div className="relative -mt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Problemas comunes, soluciones simples
-          </h2>
-          <p className="text-xl text-gray-600">
-            Estos son algunos ejemplos de cómo ayudamos a nuestros clientes
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <ProblemCard problem={item.problem} solution={item.solution} />
-            </motion.div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <ProblemCard key={currentIndex} {...problems[currentIndex]} />
+        </AnimatePresence>
       </div>
-    </section>
+    </div>
   );
 };
 
