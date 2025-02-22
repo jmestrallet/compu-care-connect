@@ -76,7 +76,7 @@ const ProblemSolutions = () => {
   }, []);
 
   return (
-    <div className="relative -mt-32 pb-16">
+    <div className="bg-[#3973B9] py-16">
       <div className="max-w-7xl mx-auto px-4">
         <AnimatePresence mode="wait">
           <ProblemCard key={currentIndex} {...problems[currentIndex]} />
