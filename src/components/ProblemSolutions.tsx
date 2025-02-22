@@ -34,39 +34,33 @@ const ProblemCard = ({ problem, solution }: Problem) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
-      className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 cursor-pointer max-w-2xl mx-auto"
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-    >
-      <AnimatePresence mode="wait">
-        {!isHovered ? (
-          <motion.div
-            key="problem"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="text-white/90 text-xl sm:text-2xl text-center font-light"
-          >
-            "{problem}"
-          </motion.div>
-        ) : (
-          <motion.div
-            key="solution"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="text-white text-xl sm:text-2xl text-center font-medium"
-          >
-            {solution}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    <AnimatePresence mode="wait">
+      {!isHovered ? (
+        <motion.div
+          key="problem"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="text-white/90 text-xl sm:text-2xl text-center font-light"
+          onHoverStart={() => setIsHovered(true)}
+          onHoverEnd={() => setIsHovered(false)}
+        >
+          "{problem}"
+        </motion.div>
+      ) : (
+        <motion.div
+          key="solution"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="text-white text-xl sm:text-2xl text-center font-medium"
+          onHoverStart={() => setIsHovered(true)}
+          onHoverEnd={() => setIsHovered(false)}
+        >
+          {solution}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
