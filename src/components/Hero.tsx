@@ -63,7 +63,9 @@ const Hero = () => {
             </a>
           </div>
           
-          <p id="fraseCambiante" className="frase-cambiante"></p>
+          <div id="fraseContenedor" className="frase-contenedor">
+            <p id="fraseCambiante" className="frase-cambiante"></p>
+          </div>
         </div>
       </div>
     </section>

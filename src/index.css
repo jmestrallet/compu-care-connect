@@ -76,18 +76,27 @@
   @apply transition-transform duration-300 hover:scale-105;
 }
 
-.frase-cambiante {
-  font-size: 24px;
-  color: white;
+.frase-contenedor {
+  position: relative; /* O 'absolute' si es necesario */
+  /* top: 50%;  Si usamos absolute */
+  /* left: 50%; Si usamos absolute */
+  /* transform: translate(-50%, -50%); Si usamos absolute */
+  width: 100%;
   text-align: center;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  margin-top: 40px;
-  font-family: sans-serif;
-  font-weight: normal;
-  padding: 10px;
+  margin-top: 60px !important;
+}
+
+.frase-cambiante {
+  font-size: 26px !important;
+  color: white !important;
+  text-align: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s ease-in-out !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: 300 !important;
+  padding: 10px !important;
 }
 
 .frase-cambiante.visible {
-  opacity: 1;
+  opacity: 1 !important;
 }
