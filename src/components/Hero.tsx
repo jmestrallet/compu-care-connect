@@ -1,5 +1,5 @@
 
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,62 +15,29 @@ const customerProblems = [
 
 const TextCarousel = () => {
   const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   
-  const next = () => {
-    setCurrent((current) => (current + 1) % customerProblems.length);
-  };
-  
-  const prev = () => {
-    setCurrent((current) => (current - 1 + customerProblems.length) % customerProblems.length);
-  };
-
   useEffect(() => {
-    if (!isPaused) {
-      const timer = setInterval(() => {
-        next();
-      }, 5000);
-      
-      return () => clearInterval(timer);
-    }
-  }, [isPaused]);
+    const timer = setInterval(() => {
+      setCurrent((current) => (current + 1) % customerProblems.length);
+    }, 5000);
+    
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div 
-      className="relative flex items-center justify-center w-full mt-8 group"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <button 
-        onClick={prev}
-        className="absolute left-0 z-10 p-2 text-white/60 hover:text-white transition-colors duration-300 focus:outline-none opacity-0 group-hover:opacity-100"
-        aria-label="Problema anterior"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      
-      <div className="overflow-hidden w-full max-w-lg h-12 sm:h-10 flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={current}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.5 }}
-            className="text-center text-white/80 text-lg font-light italic px-10"
-          >
-            "{customerProblems[current]}"
-          </motion.p>
-        </AnimatePresence>
-      </div>
-      
-      <button 
-        onClick={next}
-        className="absolute right-0 z-10 p-2 text-white/60 hover:text-white transition-colors duration-300 focus:outline-none opacity-0 group-hover:opacity-100"
-        aria-label="Siguiente problema"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+    <div className="overflow-hidden w-full flex items-center justify-center mt-8">
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-white/80 text-lg sm:text-xl font-light italic px-10"
+        >
+          "{customerProblems[current]}"
+        </motion.p>
+      </AnimatePresence>
     </div>
   );
 };
@@ -106,7 +73,7 @@ const Hero = () => {
             </a>
           </div>
           
-          {/* Carrusel de texto */}
+          {/* Texto con transición fade */}
           <TextCarousel />
         </div>
       </div>
