@@ -76,3 +76,18 @@
   @apply transition-transform duration-300 hover:scale-105;
 }
 
+.frase-cambiante {
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  margin-top: 40px;
+  font-family: sans-serif;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.frase-cambiante.visible {
+  opacity: 1;
+}

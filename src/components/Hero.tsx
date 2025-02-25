@@ -1,48 +1,38 @@
 
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const customerProblems = [
-  "No entiendo cómo usar WhatsApp o alguna app en el celu.",
-  "Mi compu anda lentísima, ¡no sé qué hacer!",
-  "Se me tildó la tele y no puedo ver Netflix.",
-  "Necesito pasar las fotos de mi celular viejo al nuevo.",
-  "La impresora no me imprime, ¡y necesito esos papeles urgente!",
-  "Me sale un error raro en la compu.",
-  "No me anda el WiFi."
-];
-
-const TextCarousel = () => {
-  const [current, setCurrent] = useState(0);
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((current) => (current + 1) % customerProblems.length);
-    }, 5000);
-    
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="overflow-hidden w-full flex items-center justify-center mt-8">
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center text-white/80 text-lg sm:text-xl font-light italic px-10"
-        >
-          "{customerProblems[current]}"
-        </motion.p>
-      </AnimatePresence>
-    </div>
-  );
-};
+import { useEffect } from "react";
 
 const Hero = () => {
+  useEffect(() => {
+    const frases = [
+      "No entiendo cómo usar WhatsApp o alguna app en el celu.",
+      "Mi compu anda lentísima, ¡no sé qué hacer!",
+      "Se me tildó la tele y no puedo ver Netflix.",
+      "Necesito pasar las fotos de mi celular viejo al nuevo.",
+      "La impresora no me imprime, ¡y necesito esos papeles urgente!",
+      "Me sale un error raro en la compu.",
+      "No me anda el WiFi",
+    ];
+
+    let fraseActual = 0;
+    const elementoFrase = document.getElementById("fraseCambiante");
+
+    function cambiarFrase() {
+      elementoFrase.classList.remove("visible");
+
+      setTimeout(() => {
+        fraseActual = (fraseActual + 1) % frases.length;
+        elementoFrase.textContent = frases[fraseActual];
+        elementoFrase.classList.add("visible");
+      }, 500);
+    }
+
+    setInterval(cambiarFrase, 5000);
+
+    elementoFrase.textContent = frases[0];
+    elementoFrase.classList.add("visible");
+  }, []);
+
   return (
     <section id="home" className="relative min-h-[75vh] flex items-center justify-center bg-[#3973B9] pt-16 overflow-hidden">
       {/* Imagen de fondo con overlay */}
@@ -73,8 +63,7 @@ const Hero = () => {
             </a>
           </div>
           
-          {/* Texto con transición fade */}
-          <TextCarousel />
+          <p id="fraseCambiante" className="frase-cambiante"></p>
         </div>
       </div>
     </section>
