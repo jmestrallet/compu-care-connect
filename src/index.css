@@ -77,10 +77,9 @@
 }
 
 .frase-contenedor {
-  position: absolute;
-  bottom: 30%;
-  right: 25%;
-  max-width: 350px;
+  position: relative;
+  margin-top: 130px;
+  width: 100%;
   text-align: center;
 }
 
@@ -101,18 +100,8 @@
   opacity: 1;
 }
 
-@media (max-width: 1024px) {
-  .frase-contenedor {
-    right: 15%;
-    bottom: 35%;
-  }
-}
-
 @media (max-width: 768px) {
   .frase-contenedor {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20%;
+    margin-top: 100px;
   }
 }
