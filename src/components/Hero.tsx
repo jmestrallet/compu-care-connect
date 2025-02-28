@@ -34,7 +34,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-[85vh] flex items-center justify-center bg-[#3973B9] pt-16 overflow-hidden">
+    <section id="home" className="relative min-h-[75vh] flex items-center justify-center bg-[#3973B9] pt-16 overflow-hidden">
       {/* Imagen de fondo con overlay */}
       <div className="absolute inset-0">
         <img src="https://i.imgur.com/WPeQlyD.jpeg" alt="Señora hablando por teléfono" className="w-full h-full object-cover object-center" />
