@@ -62,11 +62,12 @@ const Hero = () => {
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
-          
-          <div id="fraseContenedor" className="frase-contenedor">
-            <p id="fraseCambiante" className="frase-cambiante"></p>
-          </div>
         </div>
+      </div>
+      
+      {/* Frases cambiantes - Ahora reposicionadas */}
+      <div id="fraseContenedor" className="frase-contenedor">
+        <p id="fraseCambiante" className="frase-cambiante"></p>
       </div>
     </section>
   );
